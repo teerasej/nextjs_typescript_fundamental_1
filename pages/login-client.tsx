@@ -3,10 +3,17 @@
 import React, { FormEvent } from 'react'
 import { NextPage } from 'next/types'
 
+interface LoginFormElements extends HTMLCollection {
+  username: HTMLInputElement,
+  password: HTMLInputElement
+}
 
 const LoginForm: NextPage = () => {
 
   const goSignIn = async (event:FormEvent<HTMLFormElement>) => {
+
+    event.preventDefault();
+    const loginForm =  (event.currentTarget as HTMLFormElement).elements as LoginFormElements
   }
   return (
     <form onSubmit={goSignIn}>
