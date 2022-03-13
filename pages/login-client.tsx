@@ -2,6 +2,7 @@
 
 import React, { FormEvent } from 'react'
 import { NextPage } from 'next/types'
+import { AuthResult } from './types/auth-result'
 
 interface LoginFormElements extends HTMLCollection {
   username: HTMLInputElement,
@@ -26,8 +27,8 @@ const LoginForm: NextPage = () => {
       method: 'POST'
     })
 
-    const result = await response.json()
-    console.log(result)
+    const result:AuthResult = await response.json()
+    console.log(result.message)
   }
   return (
     <form onSubmit={goSignIn}>
