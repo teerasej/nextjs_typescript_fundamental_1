@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import styles from '../styles/Home.module.css' 
 import { AuthResult } from './types/auth-result'
@@ -17,6 +18,7 @@ const Home: NextPage = () => {
       const response = await fetch('api/auth')
       const json = await response.json()
       console.log(json)
+      setLoading(false)
       // const authResult = Convert.toAuthResult(json)
       // setAuthResult(authResult);  
     }
@@ -27,12 +29,13 @@ const Home: NextPage = () => {
   }, [])
   
   if(loading) return <p>loading</p>
-  if(!authResult) return <p>fail to init data</p>
+  // if(!authResult) return <p>fail to init data</p>
 
 
   return (
     <div>
-      <p>{authResult.result} {authResult.message}</p>
+      <Link href={'/login-client'}>Sign in</Link>
+      {/* <p>{authResult.result} {authResult.message}</p> */}
     </div>
   )
 }
