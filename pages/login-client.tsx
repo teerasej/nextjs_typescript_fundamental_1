@@ -14,6 +14,20 @@ const LoginForm: NextPage = () => {
 
     event.preventDefault();
     const loginForm =  (event.currentTarget as HTMLFormElement).elements as LoginFormElements
+    
+    const response = await fetch('/api/auth', {
+      body: JSON.stringify({
+        username: loginForm.username.value,
+        password: loginForm.password.value
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST'
+    })
+
+    const result = await response.json()
+    console.log(result)
   }
   return (
     <form onSubmit={goSignIn}>
@@ -26,5 +40,10 @@ const LoginForm: NextPage = () => {
   )
 }
 
+// LoginForm.getLayout = function getLayout(page: ReactElement) {
+//   return (
+//     Layout
+//   )
+// }
 
 export default LoginForm;
